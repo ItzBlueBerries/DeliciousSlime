@@ -63,7 +63,7 @@ namespace DeliciousMod
                             new SlimeSet.Member
                             {
                                 prefab = GameContext.Instance.LookupDirector.GetPrefab(ModIds.DELICIOUS_SLIME),
-                                weight = 0.3f // The higher the value is the more often your slime will spawn
+                                weight = 0.08f // The higher the value is the more often your slime will spawn
                             }
                         };
                         constraint.slimeset.members = members.ToArray();
@@ -72,7 +72,6 @@ namespace DeliciousMod
             });
             // END DELICIOUS SLIME SPAWNER
         }
-
 
         // Called before GameContext.Start
         // Used for registering things that require a loaded gamecontext
@@ -90,6 +89,9 @@ namespace DeliciousMod
             LookupRegistry.RegisterVacEntry(ModIds.DELICIOUS_SLIME, new Color32(255, 215, 0, 255), CreateSprite(LoadImage("delicious_slime.png")));
             TranslationPatcher.AddPediaTranslation("t." + ModIds.DELICIOUS_SLIME.ToString().ToLower(), "Delicious Slime");
             LookupRegistry.RegisterVacEntry(VacItemDefinition.CreateVacItemDefinition(ModIds.DELICIOUS_SLIME, new Color32(255, 215, 0, 255), CreateSprite(LoadImage("delicious_slime.png"))));
+
+            // silo stuff
+            AmmoRegistry.RegisterSiloAmmo(x => x == SiloStorage.StorageType.NON_SLIMES || x == SiloStorage.StorageType.FOOD, ModIds.DELICIOUS_SLIME);
 
             //And well, registering it!
             LookupRegistry.RegisterIdentifiablePrefab(Delicious_Object);
