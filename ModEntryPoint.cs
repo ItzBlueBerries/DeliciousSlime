@@ -38,7 +38,7 @@ namespace DeliciousMod
             PediaRegistry.SetPediaCategory(ModIds.DELICIOUS_ENTRY, (PediaRegistry.PediaCategory)1);
             new SlimePediaEntryTranslation(ModIds.DELICIOUS_ENTRY)
                 .SetTitleTranslation("Delicious Slime")
-                .SetIntroTranslation("Slimes love it! Koobaginger-tastic.")
+                .SetIntroTranslation("Slimes love it! Kookaginger-tastic.")
                 .SetDietTranslation("(none)")
                 .SetFavoriteTranslation("(none)")
                 .SetSlimeologyTranslation("When fed to any slime, they produce gilded ginger or kookadoba! That's about it really, you figure out what you wanna do with this new power.")
