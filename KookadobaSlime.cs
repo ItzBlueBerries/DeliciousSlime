@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-class DeliciousSlime // Slime name here
+class KookadobaSlime // Slime name here
 {
     public static Texture2D LoadImage(string filename) // thanks aidan or whoever created this at first- lol
     {
@@ -25,8 +25,8 @@ class DeliciousSlime // Slime name here
     public static (SlimeDefinition, GameObject) CreateSlime(Identifiable.Id SlimeId, String SlimeName)
     {
         // DEFINE
-        SlimeDefinition deliciousDefinition = SRSingleton<GameContext>.Instance.SlimeDefinitions.GetSlimeByIdentifiableId(Identifiable.Id.PINK_SLIME); // make sure to make slimeNameDefiniton your slime name btw-
-        SlimeDefinition slimeDefinition = (SlimeDefinition)PrefabUtils.DeepCopyObject(deliciousDefinition);
+        SlimeDefinition kookadobaDefinition = SRSingleton<GameContext>.Instance.SlimeDefinitions.GetSlimeByIdentifiableId(Identifiable.Id.PINK_SLIME); // make sure to make slimeNameDefiniton your slime name btw-
+        SlimeDefinition slimeDefinition = (SlimeDefinition)PrefabUtils.DeepCopyObject(kookadobaDefinition);
         slimeDefinition.AppearancesDefault = new SlimeAppearance[1];
         slimeDefinition.Diet.Produces = new Identifiable.Id[0];
         slimeDefinition.Diet.MajorFoodGroups = new SlimeEat.FoodGroup[0];
@@ -35,22 +35,22 @@ class DeliciousSlime // Slime name here
         slimeDefinition.Diet.EatMap?.Clear(); // don't touch this unless your probably a little more advanced, idk
         slimeDefinition.CanLargofy = false;
         slimeDefinition.FavoriteToys = new Identifiable.Id[1];
-        slimeDefinition.Name = "Delicious Slime";
-        slimeDefinition.IdentifiableId = ModIds.DELICIOUS_SLIME;
+        slimeDefinition.Name = "Kookadoba Slime";
+        slimeDefinition.IdentifiableId = ModIds.KOOKADOBA_SLIME;
         // OBJECT
         GameObject slimeObject = PrefabUtils.CopyPrefab(SRSingleton<GameContext>.Instance.LookupDirector.GetPrefab(Identifiable.Id.PINK_SLIME));
-        slimeObject.name = "slimeDelicious";
+        slimeObject.name = "slimeKookadoba";
         slimeObject.GetComponent<PlayWithToys>().slimeDefinition = slimeDefinition;
         slimeObject.GetComponent<SlimeAppearanceApplicator>().SlimeDefinition = slimeDefinition;
         slimeObject.GetComponent<SlimeEat>().slimeDefinition = slimeDefinition;
-        slimeObject.GetComponent<Identifiable>().id = ModIds.DELICIOUS_SLIME;
+        slimeObject.GetComponent<Identifiable>().id = ModIds.KOOKADOBA_SLIME;
         UnityEngine.Object.Destroy(slimeObject.GetComponent<FleeThreats>());
         // .AddComponent for new components, below with UnityEngine shows how to destroy components, and get them is pretty obvious.
         UnityEngine.Object.Destroy(slimeObject.GetComponent<PinkSlimeFoodTypeTracker>());
         // APPEARANCE
-        Color DeliciousColor = new Color32(255, 255, 204, 255);
-        Color DarkerDeliciousColor = new Color32(255, 255, 153, 255);
-        SlimeAppearance slimeAppearance = (SlimeAppearance)PrefabUtils.DeepCopyObject(deliciousDefinition.AppearancesDefault[0]);
+        Color PurpleColor = new Color32(123, 47, 156, 255);
+        Color DarkerPurpleColor = new Color32(98, 26, 120, 255);
+        SlimeAppearance slimeAppearance = (SlimeAppearance)PrefabUtils.DeepCopyObject(kookadobaDefinition.AppearancesDefault[0]);
         slimeDefinition.AppearancesDefault[0] = slimeAppearance;
         SlimeAppearanceStructure[] structures = slimeAppearance.Structures;
         foreach (SlimeAppearanceStructure slimeAppearanceStructure in structures)
@@ -60,10 +60,10 @@ class DeliciousSlime // Slime name here
             {
                 // SET MATERIALS HERE!! Btw above is if you want color vars-
                 Material material = UnityEngine.Object.Instantiate(SRSingleton<GameContext>.Instance.SlimeDefinitions.GetSlimeByIdentifiableId(Identifiable.Id.DERVISH_SLIME).AppearancesDefault[0].Structures[0].DefaultMaterials[0]);
-                material.SetColor("_TopColor", DeliciousColor);
-                material.SetColor("_MiddleColor", DeliciousColor);
-                material.SetColor("_BottomColor", DarkerDeliciousColor);
-                material.SetColor("_SpecColor", DarkerDeliciousColor);
+                material.SetColor("_TopColor", PurpleColor);
+                material.SetColor("_MiddleColor", PurpleColor);
+                material.SetColor("_BottomColor", DarkerPurpleColor);
+                material.SetColor("_SpecColor", DarkerPurpleColor);
                 material.SetFloat("_Shininess", 1f); // idk what these are for tbh, but you can use it if you want
                 material.SetFloat("_Gloss", 1f); // same thing here lol
                 slimeAppearanceStructure.DefaultMaterials[0] = material;
@@ -75,9 +75,9 @@ class DeliciousSlime // Slime name here
             SlimeExpressionFace slimeExpressionFace = expressionFaces[k];
             if ((bool)slimeExpressionFace.Mouth)
             {
-                slimeExpressionFace.Mouth.SetColor("_MouthBot", DeliciousColor);
-                slimeExpressionFace.Mouth.SetColor("_MouthMid", DeliciousColor);
-                slimeExpressionFace.Mouth.SetColor("_MouthTop", DeliciousColor);
+                slimeExpressionFace.Mouth.SetColor("_MouthBot", PurpleColor);
+                slimeExpressionFace.Mouth.SetColor("_MouthMid", PurpleColor);
+                slimeExpressionFace.Mouth.SetColor("_MouthTop", PurpleColor);
             }
             if ((bool)slimeExpressionFace.Eyes)
             {   /* this is the default one in frosty's wiki I think
@@ -85,20 +85,20 @@ class DeliciousSlime // Slime name here
                 slimeExpressionFace.Eyes.SetColor("_EyeGreen", new Color32(182, 170, 226, 255));
                 slimeExpressionFace.Eyes.SetColor("_EyeBlue", new Color32(182, 170, 205, 255));
                 */
-                slimeExpressionFace.Eyes.SetColor("_EyeRed", DarkerDeliciousColor);
-                slimeExpressionFace.Eyes.SetColor("_EyeGreen", DarkerDeliciousColor);
-                slimeExpressionFace.Eyes.SetColor("_EyeBlue", DarkerDeliciousColor);
+                slimeExpressionFace.Eyes.SetColor("_EyeRed", DarkerPurpleColor);
+                slimeExpressionFace.Eyes.SetColor("_EyeGreen", DarkerPurpleColor);
+                slimeExpressionFace.Eyes.SetColor("_EyeBlue", DarkerPurpleColor);
             }
         }
-        slimeAppearance.Icon = CreateSprite(LoadImage("delicious_slime.png"));
+        slimeAppearance.Icon = CreateSprite(LoadImage("kookadoba_slime.png"));
         slimeAppearance.Face.OnEnable();
         slimeAppearance.ColorPalette = new SlimeAppearance.Palette
         {
-            Top = DarkerDeliciousColor,
-            Middle = DeliciousColor,
-            Bottom = DarkerDeliciousColor
+            Top = DarkerPurpleColor,
+            Middle = PurpleColor,
+            Bottom = DarkerPurpleColor
         };
-        PediaRegistry.RegisterIdEntry(ModIds.DELICIOUS_ENTRY, CreateSprite(LoadImage("delicious_slime.png")));
+        PediaRegistry.RegisterIdEntry(ModIds.KOOKADOBA_ENTRY, CreateSprite(LoadImage("kookadoba_slime.png")));
         slimeObject.GetComponent<SlimeAppearanceApplicator>().Appearance = slimeAppearance;
         return (slimeDefinition, slimeObject);
     }

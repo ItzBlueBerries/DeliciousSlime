@@ -59,14 +59,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KookadobaSlime.cs" />
+    <Compile Include="GingerSlime.cs" />
     <Compile Include="DeliciousSlime.cs" />
     <Compile Include="Eatmaps.cs" />
     <Compile Include="ModEntryPoint.cs" />
     <Compile Include="ModIds.cs" />
+    <Compile Include="Patches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="modinfo.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ginger_slime.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="kookadoba_slime.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="delicious_slime.png" />
